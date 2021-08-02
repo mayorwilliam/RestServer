@@ -1,48 +1,51 @@
 
+const {response, request} = require('express');
+
+const usuariosGet =  (req = request, res = response) => {
+    const {q,nombre = 'no hay nombre',apikey} = req.query;
+    
+    res.json({
+      msg: 'get Api',
+      q,
+      nombre,
+      apikey
+    }); 
+  }
+
+const usuariosPut = (req, res = response) => {
+    const id = req.params.id; 
+    
+     res.json({
+      msg: 'put Api',
+      id
+    });
+  }
+
+const usuariosPost = (req, res = response) => {
+    const {nombre,edad} = req.body; //pequeña validacion donde si el request tiene mas datos nomas nos
+                                    //trae esos 2 , si no se quiere esto se pone body a la constante 
+    
+    res.json({
+      msg: 'post Api',
+      nombre,
+      edad
+    });
+  } 
 
 
-const usuariosGet =  (request, response) => {
+
+const usuariosDelete = (req, res = response) => {
+    res.json({
+      msg: 'delete Api'
+    });
+  }
   
-  const query = request.query
-  
-  response.json({
-    msg: 'Get API - Controlador',
-    query
-  })
-}
-
-const usuariosPost =  (request, response) => {
-
-  const {nombre,edad} = request.body
-  
-  response.json({
-    msg: 'Post API - Controlador',
-    nombre,
-    edad
-  })
-}
-
-const usuariosPut =  (request, response) => {
-  
-  const id = request.params.id
-  
-  response.json({
-    msg: 'put API - Controlador',
-    id
-  })
-}
-
-const usuariosDelete =  (request, response) => {
-  
-  response.json({
-    msg: 'Delete API - Controlador'
-  })
-}
 
 
-module.exports = {
-  usuariosGet,
-  usuariosPost,
-  usuariosPut,
-  usuariosDelete
-}
+
+  module.exports = {
+      usuariosGet,
+      usuariosPut,
+      usuariosPost,
+      usuariosDelete
+  }
